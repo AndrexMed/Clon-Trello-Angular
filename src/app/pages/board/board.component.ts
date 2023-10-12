@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
 import { ToDo } from 'src/app/models/todo.model';
 
@@ -30,15 +30,35 @@ export class BoardComponent {
       id: 2,
       title: "Task 2"
     },
+  ]
+
+  doing: ToDo[] = [
     {
       id: 3,
       title: "Task 3"
     },
-
+  ]
+  done: ToDo[] = [
+    {
+      id: 4,
+      title: "Task 4"
+    },
   ]
 
-  drop($event: CdkDragDrop<any>) {
-    console.log($event)
-    moveItemInArray(this.toDos, $event.previousIndex, $event.currentIndex)
+  drop($event: CdkDragDrop<ToDo[]>) {
+    //Forma1
+    if ($event.previousContainer === $event.container) {
+      moveItemInArray(this.toDos, $event.previousIndex, $event.currentIndex)
+      console.log($event)
+    } else {
+      transferArrayItem(
+        $event.previousContainer.data,
+        $event.container.data,
+        $event.previousIndex,
+        $event.currentIndex
+      )
+    }
+    //forma 2
+
   }
 }
