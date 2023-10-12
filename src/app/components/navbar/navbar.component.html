@@ -11,7 +11,8 @@
                         <a class="block py-3 px-4 text-white">Workspaces</a>
                     </li>
                     <li>
-                        <a class="block py-3 px-4 text-white cursor-pointer hover:bg-black" (click)="isOpenBody = !isOpenBody" cdkOverlayOrigin
+                        <a class="block py-3 px-4 text-white cursor-pointer hover:scale-105"
+                            (click)="isOpenBody = !isOpenBody" cdkOverlayOrigin
                             #bodyOverlay="cdkOverlayOrigin">Recent</a>
                     </li>
                     <li>
@@ -20,7 +21,15 @@
                 </ul>
             </div>
         </div>
-        <div class="flex items-center">
+
+        <div class="flex items-center gap-x-2">
+            <button class="text-white">
+                <fa-icon [icon]="faBell"></fa-icon>
+            </button>
+            <button class="text-white">
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </button>
+
             <button type="button" class="flex rounded-full" aria-expanded="false" type="button"
                 (click)="isOpen = !isOpen" cdkOverlayOrigin #menuOverlay="cdkOverlayOrigin">
                 <img class="w-8 h-8 rounded-full" src="https://api.lorem.space/image/face?w=400&h=400"
