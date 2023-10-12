@@ -8,9 +8,13 @@ import { ButtonComponent } from './components/button/button.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-import {OverlayModule} from '@angular/cdk/overlay';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+//Angular material CDK
+import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { BoardComponent } from './pages/board/board.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +22,16 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     LoginComponent,
     ButtonComponent,
     BoardsComponent,
-    NavbarComponent
+    NavbarComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     OverlayModule,
     FontAwesomeModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
