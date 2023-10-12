@@ -42,14 +42,26 @@
 
       </cdk-accordion-item>
     </cdk-accordion>
+
+    <cdk-accordion>
+      <cdk-accordion-item #accordionItem="cdkAccordionItem" *ngFor="let item of items">
+        <button (click)="accordionItem.toggle()" class="w-full text-left">{{ item.label }}</button>
+        <div [style.display]="accordionItem.expanded ? '' : 'none'">
+          <ul>
+            <li *ngFor="let subitem of item.items">{{  subitem.label }}</li>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
   </div>
+
   <div class="w-full">
     <h1 class="text-lg font-bold mb-4"><fa-icon [icon]="faClock"></fa-icon> Recently viewed</h1>
     <div class="grid grid-cols-4 gap-4">
-      <div class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
-      <div class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
-      <div class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
-      <div class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
+      <div class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24 hover:scale-105">Board 1</div>
+      <div class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-24 hover:scale-105">Board 1</div>
+      <div class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-24 hover:scale-105">Board 1</div>
+      <div class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-24 hover:scale-105">Board 1</div>
     </div>
   </div>
 </div>
