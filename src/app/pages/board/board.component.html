@@ -5,26 +5,29 @@
       <h2 class="text-xl font-bold text-white my-4">Demo Board</h2>
     </div>
     <div class="flex items-start w-full h-full" cdkDropListGroup>
-      <div class="rounded bg-gray-200 w-72 p-2 mr-3">
+
+      <div class="rounded bg-gray-200 w-72 p-2 mr-3" *ngFor="let column of columns">
         <div class="flex justify-between py-1">
-          <h3 class="text-sm font-bold ml-2">To Do</h3>
+          <h3 class="text-sm font-bold ml-2">{{ column.title}}</h3>
         </div>
 
-        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="toDos">
-          <div *ngFor="let item of toDos" cdkDrag
+        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="toDos">
+          <div *ngFor="let todo of column.todos" cdkDrag
             class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
-            {{ item.title}}
+            {{ todo.title}}
           </div>
 
         </div>
       </div>
 
-      <div class="rounded bg-gray-200 w-72 p-2 mr-3">
+      <!-- <div class="rounded bg-gray-200 w-72 p-2 mr-3">
         <div class="flex justify-between py-1">
           <h3 class="text-sm font-bold ml-2">Doing</h3>
         </div>
 
-        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="doing">
+        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="doing">
           <div *ngFor="let item of doing" cdkDrag
             class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
             {{ item.title}}
@@ -38,15 +41,17 @@
           <h3 class="text-sm font-bold ml-2">Done</h3>
         </div>
 
-        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="done">
+        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="done">
           <div *ngFor="let item of done" cdkDrag
             class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
             {{ item.title}}
           </div>
 
         </div>
-      </div>
-    </div>
+      </div> -->
 
+      <button (click)="addColumn()">Add Column</button>
+    </div>
   </div>
 </div>
