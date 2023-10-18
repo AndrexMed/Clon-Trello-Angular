@@ -7,14 +7,16 @@ import { LoginComponent } from './pages/login/login.component';
 import { ButtonComponent } from './components/button/button.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BoardComponent } from './pages/board/board.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 //Angular material CDK
-import {OverlayModule} from '@angular/cdk/overlay';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import { BoardComponent } from './pages/board/board.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DialogModule } from '@angular/cdk/dialog';
+import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { BoardComponent } from './pages/board/board.component';
     ButtonComponent,
     BoardsComponent,
     NavbarComponent,
-    BoardComponent
+    BoardComponent,
+    TodoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { BoardComponent } from './pages/board/board.component';
     OverlayModule,
     FontAwesomeModule,
     CdkAccordionModule,
-    DragDropModule
+    DragDropModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

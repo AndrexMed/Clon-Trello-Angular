@@ -1,57 +1,69 @@
 <div class="flex flex-col h-screen">
   <app-navbar></app-navbar>
   <div class="w-full grow bg-sky-600 px-4 pb-4">
-    <div>
-      <h2 class="text-xl font-bold text-white my-4">Demo Board</h2>
-    </div>
-    <div class="flex items-start w-full h-full" cdkDropListGroup>
 
-      <div class="rounded bg-gray-200 w-72 p-2 mr-3" *ngFor="let column of columns">
-        <div class="flex justify-between py-1">
-          <h3 class="text-sm font-bold ml-2">{{ column.title}}</h3>
-        </div>
-
-        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
-          [cdkDropListData]="toDos">
-          <div *ngFor="let todo of column.todos" cdkDrag
-            class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
-            {{ todo.title}}
-          </div>
-
-        </div>
+    <div class="flex flex-col h-full">
+      <div>
+        <h2 class="text-xl font-bold text-white my-4">Demo Board</h2>
       </div>
 
-      <!-- <div class="rounded bg-gray-200 w-72 p-2 mr-3">
-        <div class="flex justify-between py-1">
-          <h3 class="text-sm font-bold ml-2">Doing</h3>
-        </div>
+      <div class="flex grow items-start w-full h-full overflow-x-scroll" cdkDropListGroup>
+        <div class="rounded bg-gray-200 w-72 p-2 mr-3 shrink-0" *ngFor="let column of columns">
+          <div class="flex justify-between py-1">
+            <h3 class="text-sm font-bold ml-2">{{ column.title}}</h3>
 
-        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
-          [cdkDropListData]="doing">
-          <div *ngFor="let item of doing" cdkDrag
-            class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
-            {{ item.title}}
+            <button (click)="isOpen = !isOpen" cdkOverlayOrigin #boardOverlay="cdkOverlayOrigin" type="button"><fa-icon
+                [icon]="faEllipsis"></fa-icon></button>
           </div>
 
+          <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
+            [cdkDropListData]="column.todos">
+            <div 
+            (click)="openDialog()"
+             *ngFor="let todo of column.todos"
+              cdkDrag
+              class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
+              {{ todo.title}}
+            </div>
+
+            <div class="bg-white shadow p-2 rounded mt-2 border-x-gray-300 cursor-pointer">
+              <button><fa-icon [icon]="faAdd"></fa-icon></button>
+            </div>
+
+          </div>
         </div>
+        <button (click)="addColumn()" class="shrink-0">Add Column</button>
       </div>
-
-      <div class="rounded bg-gray-200 w-72 p-2 mr-3">
-        <div class="flex justify-between py-1">
-          <h3 class="text-sm font-bold ml-2">Done</h3>
-        </div>
-
-        <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
-          [cdkDropListData]="done">
-          <div *ngFor="let item of done" cdkDrag
-            class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
-            {{ item.title}}
-          </div>
-
-        </div>
-      </div> -->
-
-      <button (click)="addColumn()">Add Column</button>
     </div>
+
   </div>
 </div>
+
+<!-- Overlays -->
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="boardOverlay" [cdkConnectedOverlayOpen]="isOpen">
+
+  <div class="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow" id="user-dropdown">
+    <div class="py-3 px-4">
+        <span class="block text-sm text-gray-900 ">List options</span>
+    </div>
+    <ul class="py-1" aria-labelledby="user-menu-button">
+        <li>
+            <a href="#"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Dashboard</a>
+        </li>
+        <li>
+            <a href="#"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 ">Settings</a>
+        </li>
+        <li>
+            <a href="#"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 ">Earnings</a>
+        </li>
+        <li>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 ">Sign
+                out</a>
+        </li>
+    </ul>
+</div>
+
+</ng-template>

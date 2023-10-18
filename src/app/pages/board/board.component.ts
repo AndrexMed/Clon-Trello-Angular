@@ -1,6 +1,10 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Column, ToDo } from 'src/app/models/todo.model';
+import { faAdd, faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { Dialog } from '@angular/cdk/dialog';
+import { TodoDialogComponent } from 'src/app/components/todo-dialog/todo-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -20,6 +24,15 @@ import { Column, ToDo } from 'src/app/models/todo.model';
   ]
 })
 export class BoardComponent {
+
+  constructor(private dialog: Dialog) { }
+
+  @ViewChild('boardOverlay') boardOverlay!: CdkOverlayOrigin;
+
+  isOpen = false
+
+  faAdd = faAdd
+  faEllipsis = faEllipsis
 
   columns: Column[] = [
     {
@@ -45,7 +58,7 @@ export class BoardComponent {
       ]
     },
     {
-      title: "Doing",
+      title: "Done",
       todos: [
         {
           id: 4,
@@ -62,7 +75,8 @@ export class BoardComponent {
   drop($event: CdkDragDrop<ToDo[]>) {
     //Forma1
     if ($event.previousContainer === $event.container) {
-      moveItemInArray(this.toDos, $event.previousIndex, $event.currentIndex)
+      // moveItemInArray(this.toDos, $event.previousIndex, $event.currentIndex)
+      moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       console.log($event)
     } else {
       transferArrayItem(
@@ -74,10 +88,18 @@ export class BoardComponent {
     }
   }
 
-  addColumn(){
+  addColumn() {
     this.columns.push({
       title: "New Column",
       todos: []
+    })
+  }
+
+  openDialog() {
+    this.dialog.open(TodoDialogComponent, {
+      minWidth: "300px",
+      maxWidth: "50%",
+      autoFocus: false
     })
   }
 }
