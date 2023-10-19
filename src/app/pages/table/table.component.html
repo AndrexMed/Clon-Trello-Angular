@@ -1,7 +1,7 @@
 <div class="flex flex-col h-screen">
     <app-navbar></app-navbar>
     <div class="w-full grow bg-gray-400 px-4 pb-4">
-        <table cdk-table [dataSource]="products" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-2">
+        <table cdk-table [dataSource]="productsDataSource" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-2">
 
             <tr cdk-header-row *cdkHeaderRowDef="columnas"
                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></tr>
@@ -36,9 +36,18 @@
 
             <!-- Columna de Images -->
             <ng-container cdkColumnDef="images">
-                <th cdk-header-cell *cdkHeaderCellDef scope="col" class="px-6 py-3"></th>
+                <th cdk-header-cell *cdkHeaderCellDef scope="col" class="px-6 py-3">Images</th>
                 <td cdk-cell *cdkCellDef="let row">
                     <img [src]="row.images[0]" alt="" class="w-20">
+                </td>
+                <th cdk-footer-cell *cdkFooterCellDef scope="col" class="px-6 py-3"></th>
+            </ng-container>
+
+            <!-- Columna de Actions -->
+            <ng-container cdkColumnDef="actions">
+                <th cdk-header-cell *cdkHeaderCellDef scope="col" class="px-6 py-3">Actions</th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <app-button [color]="'red'" (click)="update(row)">Update</app-button>
                 </td>
                 <th cdk-footer-cell *cdkFooterCellDef scope="col" class="px-6 py-3"></th>
             </ng-container>
