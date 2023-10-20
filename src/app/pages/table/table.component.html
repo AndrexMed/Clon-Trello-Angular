@@ -49,7 +49,7 @@
             <ng-container cdkColumnDef="actions">
                 <th cdk-header-cell *cdkHeaderCellDef scope="col" class="px-6 py-3">Actions</th>
                 <td cdk-cell *cdkCellDef="let row">
-                    <app-button [color]="'red'" (click)="update(row)">Update</app-button>
+                    <app-button [color]="'danger'" (click)="update(row)">Update</app-button>
                 </td>
                 <th cdk-footer-cell *cdkFooterCellDef scope="col" class="px-6 py-3"></th>
             </ng-container>

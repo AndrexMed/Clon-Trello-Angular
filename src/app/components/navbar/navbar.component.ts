@@ -14,4 +14,8 @@ export class NavbarComponent {
 
   isOpen = false;
   isOpenBody = false;
+
+  alert(){
+    alert()
+  }
 }

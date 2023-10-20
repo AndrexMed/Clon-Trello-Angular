@@ -10,6 +10,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BoardComponent } from './pages/board/board.component';
+import { TableComponent } from './pages/table/table.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -22,7 +23,6 @@ import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.compon
 import { ScrollComponent } from './pages/scroll/scroll.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
-import { TableComponent } from './pages/table/table.component';
 
 @NgModule({
   declarations: [
